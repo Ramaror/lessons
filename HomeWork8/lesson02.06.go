@@ -14,12 +14,13 @@ import (
 который считывает данные из файла int.txt
 и построчно записывает их в файл out.txt, нумеруя каждую строку.
 Если файла out.txt нет, то он должен создаваться.
+С помощью отложенных вызово закройте файловые дескрипторы. При закрытии файла out.txt
+программа должна вывести в консоль, сколько строк и байт было записано в файл.
 */
 func HomeWork() {
-
 	file, err := os.Open("C:\\Users\\doksh\\GolandProjects\\awesomeProject\\HomeWork8\\data\\in")
-
 	qw, err := os.Create("C:\\Users\\doksh\\GolandProjects\\awesomeProject\\HomeWork8\\data\\out.txt")
+
 	if err != nil {
 		fmt.Println("Unable to create file:", err)
 		os.Exit(1)
@@ -51,9 +52,9 @@ func HomeWork() {
 	fmt.Println("Записано", i, "строк")
 }
 func main() {
+	//Реализуйте функцию logTIme()
 	start := time.Now()
 	HomeWork()
-
 	duration := time.Since(start)
 	fmt.Printf("Elapsed time: %v", duration)
 }
