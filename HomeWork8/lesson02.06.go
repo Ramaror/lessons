@@ -10,7 +10,7 @@ import (
 )
 
 /*
-В файле main.go напишите код,
+В файле loo.go напишите код,
 который считывает данные из файла int.txt
 и построчно записывает их в файл out.txt, нумеруя каждую строку.
 Если файла out.txt нет, то он должен создаваться.
@@ -18,8 +18,9 @@ import (
 программа должна вывести в консоль, сколько строк и байт было записано в файл.
 */
 func HomeWork() {
-	file, err := os.Open("C:\\Users\\doksh\\GolandProjects\\awesomeProject\\HomeWork8\\data\\in")
-	qw, err := os.Create("C:\\Users\\doksh\\GolandProjects\\awesomeProject\\HomeWork8\\data\\out.txt")
+	dir, _ := os.Getwd()
+	file, err := os.Open(dir + "/HomeWork8/data/in")
+	qw, err := os.Create(dir + "/HomeWork8/data/out.txt")
 
 	if err != nil {
 		fmt.Println("Unable to create file:", err)
@@ -31,11 +32,12 @@ func HomeWork() {
 
 	reader := bufio.NewReader(file)
 	i := 0
+	b := 0
 	var dot string = ". "
 	for {
 		i++
 		line, err := reader.ReadString('\n')
-
+		b += len(line)
 		qw.WriteString(strconv.Itoa(i))
 		qw.WriteString(dot)
 		qw.WriteString(line)
@@ -48,7 +50,7 @@ func HomeWork() {
 			}
 		}
 	}
-
+	fmt.Println(b)
 	fmt.Println("Записано", i, "строк")
 }
 func main() {
